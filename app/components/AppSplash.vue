@@ -1,9 +1,17 @@
 <script setup lang="ts">
 const visible = ref(true)
+const started = ref(false)
 
 onMounted(() => {
-  setTimeout(() => { visible.value = false }, 0)
+  // Tiny delay lets the enter transition finish before spin begins
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { started.value = true })
+  })
 })
+
+function onSpinDone() {
+  visible.value = false
+}
 </script>
 
 <template>
@@ -12,13 +20,13 @@ onMounted(() => {
       <div class="splash__bg" />
       <div class="splash__overlay" />
       <div class="splash__body">
-        <img src="/logo.webp" alt="" class="splash__logo" />
-        <p class="splash__name">Доброе сердце</p>
-        <div class="splash__dots">
-          <span class="splash__dot" />
-          <span class="splash__dot" />
-          <span class="splash__dot" />
-        </div>
+        <img
+          src="/logo.webp"
+          alt=""
+          class="splash__logo"
+          :class="{ 'splash__logo--spin': started }"
+          @animationend="onSpinDone"
+        />
       </div>
     </div>
   </Transition>
@@ -35,7 +43,6 @@ onMounted(() => {
   overflow: hidden;
 }
 
-/* Blurred photo background */
 .splash__bg {
   position: absolute;
   inset: -5%;
@@ -44,68 +51,43 @@ onMounted(() => {
   transform: scale(1.08);
 }
 
-/* Dark overlay for contrast */
 .splash__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(2, 12, 34, 0.62);
+  background: rgba(2, 12, 34, 0.58);
 }
 
-/* Logo + text */
 .splash__body {
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  animation: splashIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  justify-content: center;
+  animation: bodyIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-@keyframes splashIn {
-  from { opacity: 0; transform: translateY(12px) scale(0.96); }
-  to   { opacity: 1; transform: translateY(0)    scale(1); }
+@keyframes bodyIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .splash__logo {
-  width: 96px;
-  height: 96px;
+  width: 110px;
+  height: 110px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.45));
+  transform-origin: center center;
 }
 
-.splash__name {
-  font-family: var(--font-family-display, serif);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+.splash__logo--spin {
+  animation: halfSpin 0.82s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Loading dots */
-.splash__dots {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.25rem;
-}
-.splash__dot {
-  display: block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.7);
-  animation: dotPulse 1.2s ease-in-out infinite;
-}
-.splash__dot:nth-child(2) { animation-delay: 0.2s; }
-.splash__dot:nth-child(3) { animation-delay: 0.4s; }
-@keyframes dotPulse {
-  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-  40%           { opacity: 1;   transform: scale(1.15); }
+@keyframes halfSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(90deg); }
 }
 
-/* Fade-out transition */
-.splash-enter-active { transition: opacity 0.4s ease; }
-.splash-leave-active { transition: opacity 0.55s ease; }
+.splash-enter-active { transition: opacity 0.3s ease; }
+.splash-leave-active { transition: opacity 0.45s ease; }
 .splash-enter-from, .splash-leave-to { opacity: 0; }
 </style>

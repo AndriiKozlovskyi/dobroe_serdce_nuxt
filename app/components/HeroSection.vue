@@ -8,91 +8,18 @@
     • bg-hero-gradient → unchanged (uses CSS var already correct)
 -->
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
-import garden from '../../public/garden-old.mp4'
-import gardenMobile from '../../public/garden-mobile-old.mp4'
-import { useI18n } from 'vue-i18n'
-
 const { t } = useI18n()
-const useVideo = ref(true)
-const heroVideoRef = ref<HTMLVideoElement | null>(null)
-const heroVideoSrc = ref(garden)
-let mobileVideoQuery: MediaQueryList | null = null
-let onVisibilityChange: (() => void) | null = null
-let onViewportChange: (() => void) | null = null
-
-function prefersInstantScroll() {
-  return window.matchMedia('(prefers-reduced-motion: reduce), (hover: none) and (pointer: coarse)')
-    .matches
-}
-
-function scrollTo(id: string) {
-  document
-    .querySelector(id)
-    ?.scrollIntoView({ behavior: prefersInstantScroll() ? 'auto' : 'smooth' })
-}
 
 const stats = computed(() => [
-  {
-    value: '24/7',
-    label: t('hero.statLabel'),
-  },
+  { value: '24/7', label: t('hero.statLabel') },
 ])
 
-onMounted(() => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const saveData =
-    (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true
-  mobileVideoQuery = window.matchMedia('(max-width: 767px)')
-
-  useVideo.value = !(prefersReducedMotion || saveData)
-
-  const updateVideoSource = () => {
-    heroVideoSrc.value = mobileVideoQuery?.matches ? gardenMobile : garden
-  }
-
-  updateVideoSource()
-
-  onVisibilityChange = () => {
-    const video = heroVideoRef.value
-    if (!video) return
-    if (document.hidden) {
-      video.pause()
-    } else if (useVideo.value) {
-      void video.play().catch(() => undefined)
-    }
-  }
-
-  onViewportChange = () => {
-    const video = heroVideoRef.value
-    const nextSrc = mobileVideoQuery?.matches ? gardenMobile : garden
-
-    if (heroVideoSrc.value === nextSrc) return
-
-    heroVideoSrc.value = nextSrc
-
-    if (!video) return
-
-    video.load()
-
-    if (useVideo.value && !document.hidden) {
-      void video.play().catch(() => undefined)
-    }
-  }
-
-  document.addEventListener('visibilitychange', onVisibilityChange)
-  mobileVideoQuery.addEventListener('change', onViewportChange)
-})
-
-onUnmounted(() => {
-  if (onVisibilityChange) {
-    document.removeEventListener('visibilitychange', onVisibilityChange)
-  }
-
-  if (onViewportChange) {
-    mobileVideoQuery?.removeEventListener('change', onViewportChange)
-  }
-})
+function prefersInstantScroll() {
+  return window.matchMedia('(prefers-reduced-motion: reduce), (hover: none) and (pointer: coarse)').matches
+}
+function scrollTo(id: string) {
+  document.querySelector(id)?.scrollIntoView({ behavior: prefersInstantScroll() ? 'auto' : 'smooth' })
+}
 </script>
 
 <template>
@@ -102,16 +29,11 @@ onUnmounted(() => {
   >
     <!-- ── Layered background ── -->
     <div class="hero-media absolute inset-0">
-      <video
-        ref="heroVideoRef"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        class="hero-video absolute inset-0 h-full w-full object-cover object-center"
-      >
-        <source :src="heroVideoSrc" type="video/mp4" />
+      <video class="hero-video hero-video--desktop" autoplay muted loop playsinline preload="none">
+        <source src="/garden-old.mp4" type="video/mp4" />
+      </video>
+      <video class="hero-video hero-video--mobile" autoplay muted loop playsinline preload="none">
+        <source src="/garden-mobile-old.mp4" type="video/mp4" />
       </video> -->
       <!-- Multi-layer gradient for depth -->
       <div class="absolute inset-0 bg-[#3a6048]/10" />
@@ -228,7 +150,7 @@ onUnmounted(() => {
           >
             <Icon
               name="skill-icons:instagram"
-              class="relative z-10 h-8 w-8 text-white/70 transition-all duration-300 group-hover:text-white"
+              class="relative z-10 h-20 w-8 text-white/70 transition-all duration-300 group-hover:text-white"
             />
           </a>
           <a
@@ -308,11 +230,18 @@ onUnmounted(() => {
 }
 
 .hero-video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+}
+.hero-video--mobile { display: none; }
+@media (max-width: 767px) {
+  .hero-video--desktop { display: none; }
+  .hero-video--mobile  { display: block; }
 }
 
 @media (max-width: 767px) {
@@ -370,22 +299,10 @@ onUnmounted(() => {
     margin-top: 2rem;
     gap: 0.85rem;
   }
-
-  .hero-action {
-  }
-
-  .hero-media {
-  }
-
-  .hero-video {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-width: 100%;
-    min-height: 100%;
-    transform: none;
-    object-position: center center;
-  }
 }
 </style>
+
+
+
+
+
