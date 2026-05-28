@@ -4,7 +4,7 @@ interface ServiceItem {
   accent: string
 }
 
-const { t, tm } = useI18n()
+const { t, tm, rt } = useI18n()
 
 const services: ServiceItem[] = [
   { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 14.235V17a5 5 0 0 0 5 5h.882a4.12 4.12 0 0 0 3.964-3" opacity="0.5"/><path stroke-linecap="round" d="M5.429 3h-.092c-.313 0-.47 0-.601.012a3 3 0 0 0-2.724 2.724C2 5.868 2 6.024 2 6.336v.9a7 7 0 0 0 7 7a6.714 6.714 0 0 0 6.714-6.715V6.337c0-.313 0-.47-.011-.601a3 3 0 0 0-2.724-2.724C12.847 3 12.69 3 12.377 3h-.091"/><circle cx="19" cy="16" r="3"/><path stroke-linecap="round" d="M12 2v2M6 2v2"/></g></svg>`, accent: 'from-sapphire-50 to-sapphire-100' },
@@ -18,11 +18,11 @@ const services: ServiceItem[] = [
 ]
 
 const servicesView = computed(() => {
-  const items = tm('services.items') as Array<{ title: string; description: string }>
+  const items = tm('services.items') as Array<Record<string, any>>
   return services.map((service, index) => ({
     ...service,
-    title: items[index]?.title ?? '',
-    description: items[index]?.description ?? '',
+    title: items[index] ? rt(items[index].title) : '',
+    description: items[index] ? rt(items[index].description) : '',
   }))
 })
 </script>
@@ -66,7 +66,7 @@ const servicesView = computed(() => {
       >
         <div class="pointer-events-none absolute -right-20 -top-16 h-48 w-48 rounded-full blur-2xl" style="background: radial-gradient(circle, rgba(0,99,181,0.2) 0%, rgba(0,99,181,0) 70%);" />
         <div class="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full blur-2xl" style="background: radial-gradient(circle, rgba(249,189,21,0.18) 0%, rgba(249,189,21,0) 72%);" />
-        <img src="/logo.png" alt="" class="pointer-events-none absolute right-6 top-6 h-16 w-16 opacity-[0.09] transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105" />
+        <NuxtImg src="/logo.webp" alt="" class="pointer-events-none absolute right-6 top-6 h-16 w-16 opacity-[0.09] transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105" />
 
         <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
           <div class="flex flex-1 flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">

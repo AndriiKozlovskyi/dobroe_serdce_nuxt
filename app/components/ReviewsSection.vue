@@ -59,7 +59,7 @@ const reviewCards = [
             }"
           >
             <div class="reviews-card__logo-wrap">
-              <img :src="card.logo" :alt="card.logoAlt" class="reviews-card__logo" loading="lazy" decoding="async">
+              <NuxtImg :src="card.logo" :alt="card.logoAlt" class="reviews-card__logo" loading="lazy" />
             </div>
 
             <div class="reviews-card__meta">

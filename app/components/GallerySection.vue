@@ -5,24 +5,24 @@ interface GalleryImage {
   span?: string
 }
 
-const { t, tm } = useI18n()
+const { t, tm, rt } = useI18n()
 
 const images: GalleryImage[] = [
-  { id: 1, src: '/gallery/img.jpg', span: 'col-span-2 row-span-2' },
-  { id: 2, src: '/gallery/img1.jpg' },
-  { id: 3, src: '/gallery/img2.jpg' },
-  { id: 4, src: '/gallery/img3.jpg', span: 'col-span-2' },
-  { id: 5, src: '/gallery/img4.jpg' },
-  { id: 6, src: '/gallery/img5.jpg' },
-  { id: 7, src: '/gallery/img6.jpg' },
-  { id: 8, src: '/gallery/img7.jpg' },
+  { id: 1, src: '/gallery/img.webp', span: 'col-span-2 row-span-2' },
+  { id: 2, src: '/gallery/img1.webp' },
+  { id: 3, src: '/gallery/img2.webp' },
+  { id: 4, src: '/gallery/img3.webp', span: 'col-span-2' },
+  { id: 5, src: '/gallery/img4.webp' },
+  { id: 6, src: '/gallery/img5.webp' },
+  { id: 7, src: '/gallery/img6.webp' },
+  { id: 8, src: '/gallery/img7.webp' },
 ]
 
 const imagesView = computed(() => {
-  const imageAlts = tm('gallery.imageAlts') as string[]
+  const imageAlts = tm('gallery.imageAlts') as any[]
   return images.map((image, index) => ({
     ...image,
-    alt: imageAlts[index] ?? '',
+    alt: imageAlts[index] ? rt(imageAlts[index] as any) : '',
   }))
 })
 
@@ -40,11 +40,11 @@ function closeLightbox() {
 }
 function prevImage() {
   activeIndex.value = (activeIndex.value - 1 + imagesView.value.length) % imagesView.value.length
-  activeImage.value = imagesView.value[activeIndex.value]
+  activeImage.value = imagesView.value[activeIndex.value] ?? null
 }
 function nextImage() {
   activeIndex.value = (activeIndex.value + 1) % imagesView.value.length
-  activeImage.value = imagesView.value[activeIndex.value]
+  activeImage.value = imagesView.value[activeIndex.value] ?? null
 }
 </script>
 
@@ -75,7 +75,7 @@ function nextImage() {
           :aria-label="`${t('gallery.openPhoto')} ${image.alt}`"
           @click="openLightbox(image, i)"
         >
-          <img :src="image.src" :alt="image.alt" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async" />
+          <NuxtImg :src="image.src" :alt="image.alt" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
           <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/0 transition-all duration-400 group-hover:bg-black/40">
             <div class="flex h-12 w-12 scale-75 items-center justify-center rounded-full border border-white/60 bg-white/10 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
               <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@ function nextImage() {
             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
           </button>
           <Transition enter-active-class="transition duration-250 ease-out" enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100" mode="out-in">
-            <img :key="activeImage.id" :src="activeImage.src" :alt="activeImage.alt" class="max-h-[85vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl" decoding="async" />
+            <NuxtImg :key="activeImage.id" :src="activeImage.src" :alt="activeImage.alt" class="max-h-[85vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl" />
           </Transition>
           <div class="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5">
             <p class="font-body text-sm text-white/55">{{ activeImage.alt }}</p>

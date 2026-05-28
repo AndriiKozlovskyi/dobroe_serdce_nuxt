@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { t, tm } = useI18n()
-const documents = computed(() => tm('documents.items') as string[])
+const { t, tm, rt } = useI18n()
+const documents = computed(() => (tm('documents.items') as any[]).map((d: any) => rt(d)))
 </script>
 
 <template>
@@ -33,8 +33,8 @@ const documents = computed(() => tm('documents.items') as string[])
               class="pointer-events-none absolute -right-20 -top-16 h-48 w-48 rounded-full blur-2xl"
               style="background: radial-gradient(circle, rgba(0,99,181,0.22) 0%, rgba(0,99,181,0) 70%);"
             />
-            <img
-              src="https://dobroe-serdce.com.ua/wp-content/uploads/2019/07/favicon-512-02.png"
+            <NuxtImg
+              src="/logo.webp"
               alt=""
               class="pointer-events-none absolute right-5 top-5 h-16 w-16 opacity-[0.09] transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105"
             />
@@ -78,7 +78,7 @@ const documents = computed(() => tm('documents.items') as string[])
         <div data-animate class="delay-200">
           <div class="rounded-3xl bg-white p-8 shadow-card border border-ivory-200">
             <div class="mb-7 flex items-center gap-4 border-b border-ivory-200 pb-6">
-              <img src="/logo.png" alt="Доброе сердце" class="h-10 w-10" />
+              <NuxtImg src="/logo.webp" alt="Доброе сердце" class="h-10 w-10" />
               <div>
                 <h3 class="font-display text-2xl font-semibold text-ink-900">{{ t('documents.listTitle') }}</h3>
                 <p class="font-body text-xs text-ink-400">{{ documents.length }} {{ t('documents.positions') }}</p>
@@ -92,8 +92,8 @@ const documents = computed(() => tm('documents.items') as string[])
                 class="group flex items-start gap-4 transition-colors duration-200 hover:bg-sapphire-50 -mx-3 px-3 py-2 rounded-xl"
               >
                 <div class="flex h-7 w-7 flex-shrink-0 items-center justify-center">
-                  <img
-                    src="/logo-blue.png"
+                  <NuxtImg
+                    src="/logo-blue.webp"
                     alt="icon"
                     class="h-6 w-6 object-contain transition-transform duration-200 group-hover:scale-110"
                   />

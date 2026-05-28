@@ -1,7 +1,12 @@
 <script setup lang="ts">
-const { t, tm } = useI18n()
+const { t, tm, rt } = useI18n()
 const currentYear = new Date().getFullYear()
-const navLinks = computed(() => tm('footer.nav') as { label: string; href: string }[])
+const navLinks = computed(() =>
+  (tm('footer.nav') as Array<Record<string, any>>).map(link => ({
+    label: rt(link.label),
+    href: rt(link.href),
+  }))
+)
 
 function scrollTo(href: string) {
   document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
@@ -37,8 +42,8 @@ function scrollTo(href: string) {
               white-space: nowrap;
               pointer-events: none;
             ">Астана</div>
-            <img
-              src="/dobroe_serdce.png"
+            <NuxtImg
+              src="/dobroe_serdce.webp"
               alt="Логотип Доброе сердце"
               class="ds-logo__img"
               style="height: 44px; width: auto; display: block;"
@@ -118,7 +123,7 @@ function scrollTo(href: string) {
             © {{ currentYear }} {{ t('footer.rights') }}
           </p>
           <div class="flex items-center gap-2">
-            <img src="/logo.png" alt="" class="h-4 w-4 rounded-full opacity-25" />
+            <NuxtImg src="/logo.webp" alt="" class="h-4 w-4 rounded-full opacity-25" />
             <span class="font-body text-xs text-black/20">{{ t('footer.madeWithCare') }}</span>
           </div>
           <small>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t, tm } = useI18n()
+const { t, tm, rt } = useI18n()
 
 const factors = [
   {
@@ -17,16 +17,16 @@ const factors = [
 ]
 
 const factorsView = computed(() => {
-  const labels = tm('price.factorLabels') as string[]
+  const labels = tm('price.factorLabels') as any[]
   return factors.map((factor, index) => ({
     ...factor,
-    label: labels[index] ?? '',
+    label: labels[index] ? rt(labels[index] as any) : '',
   }))
 })
 
 const stepsView = computed(() => {
-  const steps = tm('price.steps') as string[]
-  return steps.map((text, index) => ({ n: index + 1, text }))
+  const steps = tm('price.steps') as any[]
+  return steps.map((text: any, index) => ({ n: index + 1, text: rt(text) }))
 })
 </script>
 
@@ -50,7 +50,7 @@ const stepsView = computed(() => {
               style="background: radial-gradient(circle, rgba(249,189,21,0.2) 0%, rgba(249,189,21,0) 72%);"
             />
 
-            <img src="/logo.png" alt="" class="pointer-events-none absolute right-8 top-8 h-20 w-20 opacity-[0.09] transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105" />
+            <NuxtImg src="/logo.webp" alt="" class="pointer-events-none absolute right-8 top-8 h-20 w-20 opacity-[0.09] transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105" />
 
             <div class="relative z-10 h-full">
               <div class="mb-4 flex flex-wrap items-center gap-2">
@@ -107,7 +107,7 @@ const stepsView = computed(() => {
           <ol class="mb-10 space-y-5">
             <li v-for="step in stepsView" :key="step.n" class="group flex items-center gap-4">
               <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center">
-                <img src="/logo-blue.png" alt="icon" class="h-7 w-7 object-contain transition-transform duration-300 group-hover:scale-110" />
+                <NuxtImg src="/logo-blue.webp" alt="icon" class="h-7 w-7 object-contain transition-transform duration-300 group-hover:scale-110" />
               </div>
               <p class="font-body text-base font-medium text-ink-700 text-left max-w-[calc(100%-4rem)]">{{ step.text }}</p>
               <div class="h-px flex-1 bg-ivory-200 transition-all duration-300 group-hover:bg-brand-100 hidden sm:block" />

@@ -74,7 +74,7 @@ function scrollToSection(href: string) {
         >
           Астана
         </div>
-        <img src="/dobroe_serdce.png" alt="Логотип Доброе сердце" class="ds-logo__img" />
+        <NuxtImg src="/dobroe_serdce.webp" alt="Логотип Доброе сердце" class="ds-logo__img" />
       </div>
 
       <ul class="ds-nav__list" role="list">

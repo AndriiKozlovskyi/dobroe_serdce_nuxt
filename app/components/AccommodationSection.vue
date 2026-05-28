@@ -5,7 +5,7 @@ interface AccommodationOption {
   iconBg: string
 }
 
-const { t, tm } = useI18n()
+const { t, tm, rt } = useI18n()
 
 const options: AccommodationOption[] = [
   {
@@ -42,17 +42,17 @@ const options: AccommodationOption[] = [
 ]
 
 const optionsView = computed(() => {
-  const optionTexts = tm('accommodation.options') as Array<{ title: string; subtitle: string; description: string }>
+  const optionTexts = tm('accommodation.options') as Array<Record<string, any>>
   return options.map((option, index) => ({
     ...option,
-    title: optionTexts[index]?.title ?? '',
-    subtitle: optionTexts[index]?.subtitle ?? '',
-    description: optionTexts[index]?.description ?? '',
+    title: optionTexts[index] ? rt(optionTexts[index].title as any) : '',
+    subtitle: optionTexts[index] ? rt(optionTexts[index].subtitle as any) : '',
+    description: optionTexts[index] ? rt(optionTexts[index].description as any) : '',
   }))
 })
 
-const acceptedView = computed(() => tm('accommodation.accepted') as string[])
-const notAcceptedView = computed(() => tm('accommodation.notAccepted') as string[])
+const acceptedView = computed(() => (tm('accommodation.accepted') as any[]).map((item: any) => rt(item)))
+const notAcceptedView = computed(() => (tm('accommodation.notAccepted') as any[]).map((item: any) => rt(item)))
 </script>
 
 <template>

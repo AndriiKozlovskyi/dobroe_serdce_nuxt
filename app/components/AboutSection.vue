@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { t, tm } = useI18n()
-const missions = computed(() => tm('about.missions') as string[])
+const { t, tm, rt } = useI18n()
+const missions = computed(() => (tm('about.missions') as any[]).map((m: any) => rt(m)))
 </script>
 
 <template>
@@ -19,22 +19,21 @@ const missions = computed(() => tm('about.missions') as string[])
 
         <div class="relative" data-animate>
           <div class="relative overflow-hidden rounded-3xl shadow-lift">
-            <img
-              src="/about/care.jpg"
+            <NuxtImg
+              src="/about/care.webp"
               alt="Персонал пансионата ухаживает за пожилым человеком"
               class="h-[380px] w-full object-cover transition-transform duration-700 hover:scale-105 sm:h-[460px]"
               loading="lazy"
-              decoding="async"
             />
             <div class="absolute inset-0 rounded-3xl" style="box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);" />
           </div>
 
           <div class="absolute -right-6 top-8 hidden overflow-hidden rounded-2xl shadow-lift lg:block" style="width: 180px; height: 200px;">
-            <img src="/about/hugs.jpg" alt="Уютная комната пансионата" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+            <NuxtImg src="/about/hugs.webp" alt="Уютная комната пансионата" class="h-full w-full object-cover" loading="lazy" />
           </div>
 
           <div class="absolute -bottom-8 -right-6 hidden overflow-hidden rounded-2xl shadow-lift lg:block" style="width: 160px; height: 160px;">
-            <img src="/about/heart.jpg" alt="Прогулка на свежем воздухе" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+            <NuxtImg src="/about/heart.webp" alt="Прогулка на свежем воздухе" class="h-full w-full object-cover" loading="lazy" />
           </div>
 
           <div
@@ -42,7 +41,7 @@ const missions = computed(() => tm('about.missions') as string[])
             style="background: linear-gradient(135deg, var(--color-sapphire-700), var(--color-sapphire-800));"
           >
             <div class="relative">
-              <img src="/logo.png" alt="Логотип Доброе сердце" class="h-11 w-11 rounded-full bg-white p-1 ring-1 ring-white/30" />
+              <NuxtImg src="/logo.webp" alt="Логотип Доброе сердце" class="h-11 w-11 rounded-full bg-white p-1 ring-1 ring-white/30" />
             </div>
             <div>
               <div class="font-display text-lg font-semibold leading-none text-white">Доброе сердце</div>
@@ -74,7 +73,7 @@ const missions = computed(() => tm('about.missions') as string[])
                 class="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
                 style="background: linear-gradient(135deg, var(--color-brand-100), var(--color-brand-50));"
               >
-                <img src="/logo-blue.png" alt="icon" class="h-4 w-4 object-contain" />
+                <NuxtImg src="/logo-blue.webp" alt="icon" class="h-4 w-4 object-contain" />
               </div>
               <span class="font-body text-base leading-relaxed text-ink-700">{{ mission }}</span>
             </li>
