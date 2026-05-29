@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         apiOptions: { region: 'eu' },
         useApiClient: true,
         enableSudoMode: false,
-        bridge: false,
+        bridge: import.meta.dev,
       },
     ],
   ],
