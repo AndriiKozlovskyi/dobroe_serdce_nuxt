@@ -10,6 +10,16 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxtjs/i18n',
+    [
+      '@storyblok/nuxt',
+      {
+        accessToken: 'PrR7fZKev5wAsQoiiGLJFAtt',
+        apiOptions: { region: 'eu' },
+        useApiClient: true,
+        enableSudoMode: false,
+        bridge: false,
+      },
+    ],
   ],
 
   css: ['~/assets/style.css'],
@@ -36,6 +46,14 @@ export default defineNuxtConfig({
     langDir: 'locales',
     lazy: true,
     baseUrl: 'https://dobroe-serdce.kz',
+  },
+
+  runtimeConfig: {
+    storyblokToken: 'PrR7fZKev5wAsQoiiGLJFAtt',
+    public: {
+      storyblokToken: 'PrR7fZKev5wAsQoiiGLJFAtt',
+      storyblokVersion: 'published',
+    },
   },
 
   app: {
