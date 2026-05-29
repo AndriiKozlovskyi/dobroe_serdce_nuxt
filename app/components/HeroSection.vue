@@ -148,7 +148,7 @@ function scrollTo(id: string) {
             aria-label="Instagram"
             class="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110"
           >
-            <Icon name="skill-icons:instagram" size="28" class="opacity-80 transition-opacity group-hover:opacity-100" />
+            <Icon name="skill-icons:instagram" size="34" class="opacity-80 transition-opacity group-hover:opacity-100" />
 
           </a>
           <a
@@ -160,7 +160,7 @@ function scrollTo(id: string) {
           >
             <Icon
               name="logos:telegram"
-              size="30"
+              size="34"
               class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
             />
           </a>
@@ -173,7 +173,7 @@ function scrollTo(id: string) {
           >
             <Icon
               name="logos:whatsapp-icon"
-              size="30"
+              size="34"
               class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
             />
           </a>

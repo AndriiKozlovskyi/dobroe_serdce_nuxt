@@ -109,7 +109,7 @@ const reviewCards = [
       >
        <Icon
               name="skill-icons:instagram"
-              size="30"
+              size="34"
               class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
             />      
       </a>
@@ -122,7 +122,7 @@ const reviewCards = [
       >
       <Icon
               name="logos:telegram"
-              size="30"
+              size="34"
               class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
             />      
       </a>
@@ -135,7 +135,7 @@ const reviewCards = [
       >
         <Icon
               name="logos:whatsapp-icon"
-              size="30"
+              size="34"
               class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
             />
       </a>

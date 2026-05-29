@@ -90,11 +90,11 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
         <div class="hidden items-center gap-4 lg:flex">
           <a href="https://instagram.com/pansionat_dobroe_serdce" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
             class="group flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-            <Icon name="skill-icons:instagram" size="28" class="opacity-80 transition-opacity group-hover:opacity-100" />
+            <Icon name="skill-icons:instagram" size="34" class="opacity-80 transition-opacity group-hover:opacity-100" />
           </a>
           <a href="https://wa.me/380961462910" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
             class="group flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-            <Icon name="logos:whatsapp-icon" size="28" class="opacity-80 transition-opacity group-hover:opacity-100" />
+            <Icon name="logos:whatsapp-icon" size="34" class="opacity-80 transition-opacity group-hover:opacity-100" />
           </a>
         </div>
 
@@ -194,18 +194,46 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
           {{ ui.callButton }}
         </a>
         <div class="flex items-center justify-center gap-6 pt-4">
-          <a href="https://instagram.com/pansionat_dobroe_serdce" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-            class="group flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-            <Icon name="skill-icons:instagram" class="h-14 w-14 transition-all group-hover:scale-110" />
-          </a>
-          <a href="https://t.me/pansionat_dobroe_serdce" target="_blank" rel="noopener noreferrer" aria-label="Telegram"
-            class="group inline-flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-            <Icon name="logos:telegram" class="h-14 w-14 text-ink-600 transition-all group-hover:text-sapphire-700" />
-          </a>
-          <a href="https://wa.me/380961462910" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-            class="group flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-            <Icon name="logos:whatsapp-icon" class="h-14 w-14 transition-all group-hover:scale-110" />
-          </a>
+          <div
+          class="hero-socials items-start animate-fade-up flex sm:justify-start justify-center w-full gap-5 delay-500 sm:mt-10 sm:gap-6"
+          >
+            <a
+              href="https://instagram.com/pansionat_dobroe_serdce"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              class="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110"
+            >
+              <Icon name="skill-icons:instagram" size="34" class="opacity-80 transition-opacity group-hover:opacity-100" />
+
+            </a>
+            <a
+              href="https://t.me/pansionat_dobroe_serdce"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Telegram"
+              class="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110"
+            >
+              <Icon
+                name="logos:telegram"
+                size="34"
+                class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
+              />
+            </a>
+            <a
+              href="https://wa.me/380961462910"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              class="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110"
+            >
+              <Icon
+                name="logos:whatsapp-icon"
+                size="34"
+                class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </Transition>
@@ -253,7 +281,7 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
 
 /* ── Logo ───────────────────────────────────── */
 .ds-logo__img-wrap { position: relative; flex-shrink: 0; }
-.ds-logo__img { height: 26px; width: auto; object-fit: contain; }
+.ds-logo__img { height: 34px; width: auto; object-fit: contain; }
 @media (min-width: 640px)  { .ds-logo__img { height: 30px; } }
 @media (min-width: 1024px) { .ds-logo__img { height: 36px; } }
 
