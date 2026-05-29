@@ -90,11 +90,11 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
         <div class="hidden items-center gap-4 lg:flex">
           <a href="https://instagram.com/pansionat_dobroe_serdce" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
             class="group flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-            <Icon name="skill-icons:instagram" class="h-14 w-14 text-white/70 transition-colors group-hover:text-white" />
+            <Icon name="skill-icons:instagram" size="28" class="opacity-80 transition-opacity group-hover:opacity-100" />
           </a>
           <a href="https://wa.me/380961462910" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
             class="group flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-            <Icon name="logos:whatsapp-icon" class="h-14 w-14 text-white/70 transition-colors group-hover:text-white" />
+            <Icon name="logos:whatsapp-icon" size="28" class="opacity-80 transition-opacity group-hover:opacity-100" />
           </a>
         </div>
 

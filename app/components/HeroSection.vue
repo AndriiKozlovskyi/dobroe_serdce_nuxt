@@ -139,7 +139,7 @@ function scrollTo(id: string) {
 
         <!-- Social media icons -->
         <div
-          class="hero-socials animate-fade-up mt-8 flex items-center justify-center w-full gap-5 delay-500 sm:mt-10 sm:gap-6"
+          class="hero-socials items-start px-3 animate-fade-up mt-8 flex sm:justify-start justify-center w-full gap-5 delay-500 sm:mt-10 sm:gap-6"
         >
           <a
             href="https://instagram.com/pansionat_dobroe_serdce"
@@ -148,10 +148,8 @@ function scrollTo(id: string) {
             aria-label="Instagram"
             class="group relative inline-flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110"
           >
-            <Icon
-              name="skill-icons:instagram"
-              class="relative z-10 h-14 w-14 text-white/70 transition-all duration-300 group-hover:text-white"
-            />
+            <Icon name="skill-icons:instagram" size="28" class="opacity-80 transition-opacity group-hover:opacity-100" />
+
           </a>
           <a
             href="https://t.me/pansionat_dobroe_serdce"
@@ -162,7 +160,8 @@ function scrollTo(id: string) {
           >
             <Icon
               name="logos:telegram"
-              class="relative z-10 h-14 w-14 text-white/70 transition-all duration-300 group-hover:text-white"
+              size="30"
+              class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
             />
           </a>
           <a
@@ -174,7 +173,8 @@ function scrollTo(id: string) {
           >
             <Icon
               name="logos:whatsapp-icon"
-              class="relative z-10 h-14 w-14 text-white/70 transition-all duration-300 group-hover:text-white"
+              size="30"
+              class="relative z-10 opacity-80 transition-all duration-300 group-hover:opacity-100"
             />
           </a>
         </div>

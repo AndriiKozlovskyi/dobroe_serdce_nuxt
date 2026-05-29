@@ -73,21 +73,24 @@ function onSpinDone() {
 .splash__logo {
   width: 110px;
   height: 110px;
+  transform: rotate(180deg);
+  opacity: 0;
   object-fit: contain;
   filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.45));
   transform-origin: center center;
 }
 
 .splash__logo--spin {
-  animation: halfSpin 0.82s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: halfSpin 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes halfSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(90deg); }
+  from  { transform: rotate(180deg); opacity: 0; }
+  35%   { opacity: 1; }
+  to    { transform: rotate(0deg); opacity: 1; }
 }
 
 .splash-enter-active { transition: opacity 0.3s ease; }
-.splash-leave-active { transition: opacity 0.45s ease; }
+.splash-leave-active { transition: opacity 0.5s ease; }
 .splash-enter-from, .splash-leave-to { opacity: 0; }
 </style>
